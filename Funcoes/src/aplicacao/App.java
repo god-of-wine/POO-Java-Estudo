@@ -11,8 +11,6 @@ public class App{
         String name1, email;
         int quarto;
 
-        for(int i=0;i<10;i++) vet[i] = new Dados();
-
         System.out.printf("Quantos quartos serão alugados? ");
         int quantidade = ler.nextInt(); ler.nextLine();
 
@@ -21,14 +19,14 @@ public class App{
             System.out.printf("Nome: "); name1 = ler.nextLine();
             System.out.printf("Email: "); email = ler.nextLine();
             System.out.printf("Quarto: "); quarto = ler.nextInt(); ler.nextLine();
-            if(vet[quarto].checkSlot()==true) System.out.println("Quarto já ocupado, tente outro!");
+            if(vet[quarto]!=null&&vet[quarto].checkSlot()==true){ System.out.println("Quarto já ocupado, tente outro!"); i--;}
             else vet[quarto] = new Dados(name1, email, quarto);
             System.out.println("");
         }
 
         System.out.println("Quartos ocupados:");
-        for(int i=0;i<10;i++){
-            if(vet[i].checkSlot()==true) vet[i].printData();
+        for(Dados obj: vet){
+            if(obj!=null) obj.printData();
         }
 
         ler.close();
