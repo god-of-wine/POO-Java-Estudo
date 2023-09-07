@@ -15,13 +15,8 @@ public class Dados {
         this.ocupado = true;
     }
 
-    public boolean checkSlot(){
-        if (ocupado == true) return true;
-        else return false;
-    }
-
-    public void printData(){
-        System.out.println(quarto+": "+nome+", "+email);
+    public String toString(){
+        return quarto+": "+nome+", "+email;
     }
     
 }

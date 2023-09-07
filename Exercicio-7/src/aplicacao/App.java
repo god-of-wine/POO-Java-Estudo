@@ -19,14 +19,14 @@ public class App{
             System.out.printf("Nome: "); name1 = ler.nextLine();
             System.out.printf("Email: "); email = ler.nextLine();
             System.out.printf("Quarto: "); quarto = ler.nextInt(); ler.nextLine();
-            if(vet[quarto]!=null&&vet[quarto].checkSlot()==true){ System.out.println("Quarto já ocupado, tente outro!"); i--;}
+            if(vet[quarto]!=null){ System.out.println("Quarto já ocupado, tente outro!"); i--;}
             else vet[quarto] = new Dados(name1, email, quarto);
             System.out.println("");
         }
 
         System.out.println("Quartos ocupados:");
         for(Dados obj: vet){
-            if(obj!=null) obj.printData();
+            if(obj!=null) System.out.println(obj);
         }
 
         ler.close();
