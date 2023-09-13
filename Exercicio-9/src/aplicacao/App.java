@@ -42,7 +42,6 @@ public class App {
         if(!encontrado) System.out.println("Funcionario não encontrado!");
         System.out.println("%nLista de empregados:");
 
-
         for(Object obj: lista) System.out.println(obj);
 
         ler.close();
