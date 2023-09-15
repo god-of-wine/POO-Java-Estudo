@@ -14,6 +14,6 @@ public class Dados {
     }
 
     public String toString(){
-        return quarto+": "+nome+", "+email;
+        return (quarto+": "+nome+", "+email);
     }
 }

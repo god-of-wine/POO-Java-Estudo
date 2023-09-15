@@ -9,17 +9,15 @@ import servicos.ordenaids;
 
 public class App {
     public static void main(String[] args){
-        int qt, id;
-        String nome;
         float salario;
         Scanner ler = new Scanner(System.in);
         ArrayList<Funcionario> lista = new ArrayList<>();
 
-        System.out.printf("Quantos empregados serão cadastrados: "); qt = ler.nextInt();
+        System.out.printf("Quantos empregados serão cadastrados: "); int qt = ler.nextInt();
         for(int i=1 ; i<=qt ; i++){
             System.out.println("Empregado #"+i);
-            System.out.printf("ID: "); id=ler.nextInt(); ler.nextLine();
-            System.out.printf("Nome: "); nome = ler.nextLine();
+            System.out.printf("ID: "); int id=ler.nextInt(); ler.nextLine();
+            System.out.printf("Nome: "); String nome = ler.nextLine();
             System.out.printf("Salario: "); salario = ler.nextFloat();
             System.out.println();
 

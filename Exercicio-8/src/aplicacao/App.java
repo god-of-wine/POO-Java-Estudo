@@ -9,8 +9,6 @@ public class App{
     public static void main(String[] args){
         Scanner ler = new Scanner(System.in);
         Dados pessoa = new Dados();
-        String name, email;
-        int quarto;
         ArrayList<Dados> pensionato = new ArrayList<Dados>();
 
         for(int i=0;i<10;i++) pensionato.add(null);
@@ -20,9 +18,9 @@ public class App{
 
         for(int i=1;i<=quantidade;i++){
             System.out.println("Aluguel #"+i);
-            System.out.printf("Nome: "); name = ler.nextLine();
-            System.out.printf("Email: "); email = ler.nextLine();
-            System.out.printf("Quarto: "); quarto = ler.nextInt(); ler.nextLine();
+            System.out.printf("Nome: "); String name = ler.nextLine();
+            System.out.printf("Email: "); String email = ler.nextLine();
+            System.out.printf("Quarto: "); int quarto = ler.nextInt(); ler.nextLine();
             if(pensionato.get(quarto)!=null){System.out.println("Quarto já ocupado, tente outro!"); i--;}
             else{pessoa = new Dados(name, email, quarto); pensionato.add(quarto, pessoa);}
             System.out.println("");

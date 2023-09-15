@@ -24,6 +24,7 @@ public class App {
                         chamada.add(new Alunos(nome, vet[0], vet[1], vet[2])); 
                         break;
                 case 2: for (Alunos obj: chamada){System.out.println(obj);}
+                        break;
             }
 
         }while(op!=3);
