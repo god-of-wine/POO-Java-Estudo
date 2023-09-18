@@ -12,7 +12,7 @@ public class Postagens {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    List<Comentarios> comentarios = new ArrayList<>();
+    private List<Comentarios> comentarios = new ArrayList<>();
 
     public Postagens(Date momento, String titulo, String conteudo){
         this.momento = momento;
@@ -37,6 +37,7 @@ public class Postagens {
         sb.append("----------------------------------------\nTítulo - ").append(this.titulo)
                 .append("\nData - ").append(sdf.format(this.momento))
                 .append(" Curtidas - ").append(this.curtidas)
+                .append("\n"+this.conteudo)
                 .append("\nComentários:\n");
     
         for (Comentarios come : comentarios) {
@@ -70,5 +71,11 @@ public class Postagens {
     }
     public void setCurtidas(Integer curtidas) {
         this.curtidas = curtidas;
-    }  
+    }
+    public List<Comentarios> getComentarios(){
+        return comentarios;
+    }
+    public void setComentarios(List<Comentarios> comentarios){
+        this.comentarios = comentarios;
+    }
 }

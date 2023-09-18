@@ -37,20 +37,21 @@ public class App {
     }
 
     public static void subMenu(){
-        System.out.println("1 - Comentar\n2 - Curtir\n3 - Voltar\n'p' proximo - 'a' anterior\n");
+        System.out.println("1 - Comentar\n2 - Curtir\n3 - Remover Comentário\n4 - Voltar\n'p' proximo - 'a' anterior\n");
     }
 
     public static void Visuzalizar(List<Postagens> rede, Scanner ler){
         char op='0';
-        for(int i=0;op!='3';){
+        for(int i=0;op!='4';){
             subMenu();
             System.out.println(rede.get(i));
-            op = ler.next().charAt(0);
+            op = ler.next().charAt(0); ler.nextLine();
             switch (op){
                 case 'a': if(i!=0){i--;} break;
                 case 'p': if(i!=rede.size()-1){i++;} break;
                 case '1': rede.get(i).addComentario(Comentar(ler)); break;
                 case '2': rede.get(i).Curtir(); break;
+                case '3': rede.get(i).remComentario(Remover(ler, rede.get(i))); break;
             }
         }
     }
@@ -65,5 +66,13 @@ public class App {
         Date dataAtual = new Date();
         Postagens post = new Postagens(dataAtual, titulo, conteudo);
         return post;
+    }
+    public static Comentarios Remover(Scanner ler, Postagens post){
+        System.out.printf("Comentário: "); String comentario = ler.nextLine();
+        List<Comentarios> lista = post.getComentarios();
+        for(Comentarios coment:lista){
+            if(comentario.equals(coment.getPost())) return coment;
+        }
+        return new Comentarios("");
     }
 }
