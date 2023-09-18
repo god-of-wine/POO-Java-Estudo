@@ -34,7 +34,7 @@ public class Postagens {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Título - ").append(this.titulo)
+        sb.append("----------------------------------------\nTítulo - ").append(this.titulo)
                 .append("\nData - ").append(sdf.format(this.momento))
                 .append(" Curtidas - ").append(this.curtidas)
                 .append("\nComentários:\n");
@@ -42,7 +42,7 @@ public class Postagens {
         for (Comentarios come : comentarios) {
             sb.append("-").append(come).append("\n");
         }
-    
+        sb.append("----------------------------------------");
         return sb.toString();
     }
 
