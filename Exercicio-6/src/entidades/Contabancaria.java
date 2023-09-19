@@ -28,6 +28,7 @@ public class Contabancaria {
         return ("Conta " +id+", Nome do titular: "+nome+", Saldo: R$ "+String.format("%.2f", saldo));
     }
 
+    //getters e setters
     public Integer getId() {
         return id;
     }
