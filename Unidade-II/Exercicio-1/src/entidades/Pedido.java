@@ -45,7 +45,7 @@ public class Pedido {
 
         .append("\nItens do pedido:\n");
         for(ItensPedido aux:itens) sb.append(aux).append("\n");
-        sb.append("Valor total: ").append(String.format("%.2f", calcTotal()));
+        sb.append("Valor total: R$ ").append(String.format("%.2f", calcTotal()));
         return sb.toString();
     }
 
