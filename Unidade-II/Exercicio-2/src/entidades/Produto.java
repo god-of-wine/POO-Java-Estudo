@@ -1,7 +1,7 @@
 package entidades;
 public class Produto {
-    private String nome;
-    private Double preco;
+    protected String nome;
+    protected Double preco;
 
     public Produto(String nome, Double preco){
         this.nome = nome;
