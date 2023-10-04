@@ -6,7 +6,6 @@ public class ContribuinteJuridico extends Contribuintes {
     public ContribuinteJuridico(String nome, Double rendimento, Integer empregados){
         super(nome, rendimento);
         this.empregados = empregados;
-        this.imposto = imposto(rendimento, empregados);
     }
 
     public Integer getEmpregados() {
@@ -19,6 +18,11 @@ public class ContribuinteJuridico extends Contribuintes {
 
     @Override
     public String toString(){
-        return (this.nome+": R$ "+String.format("%.2f", this.imposto));
+        return (this.nome+": R$ "+String.format("%.2f", imposto()));
+    }
+
+    public Double imposto(){
+        if(empregados>10) return (rendimento*14/100);
+        else return (rendimento*16/100);
     }
 }

@@ -35,7 +35,7 @@ public class App {
         System.out.println("\nIMPOSTOS PAGOS:");
         for(Contribuintes aux: lista){
             System.out.println(aux);
-            imptotal+=aux.getImposto();
+            imptotal+=aux.imposto();
         }
         System.out.println("IMPOSTOS TOTAIS: R$ "+String.format("%.2f", imptotal));
         ler.close();

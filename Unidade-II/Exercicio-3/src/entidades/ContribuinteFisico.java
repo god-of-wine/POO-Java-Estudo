@@ -6,7 +6,6 @@ public class ContribuinteFisico extends Contribuintes {
     public ContribuinteFisico(String nome, Double rendimento, Double saude){
         super(nome, rendimento);
         this.saude = saude;
-        this.imposto = imposto(rendimento, saude);
     }
 
     public Double getSaude() {
@@ -19,6 +18,11 @@ public class ContribuinteFisico extends Contribuintes {
 
     @Override
     public String toString(){
-        return (this.nome+": R$ "+String.format("%.2f", this.imposto));
+        return (this.nome+": R$ "+String.format("%.2f", imposto()));
+    }
+
+    public Double imposto(){
+        if(rendimento>=20000) return ((rendimento/4)-(saude/2));
+        else return ((rendimento*15/100)-(saude/2));
     }
 }
