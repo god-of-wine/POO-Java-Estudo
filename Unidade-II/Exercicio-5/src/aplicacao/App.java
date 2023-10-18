@@ -24,7 +24,8 @@ public class App {
             System.out.printf("Digite o caminho onde deseja criar o resumo: "); String resposta = input.nextLine();
             boolean cria = new File(resposta + "\\resposta").mkdir();
             resposta += "\\resposta\\resumo.csv";
-            System.out.println("Arquivo criado com sucesso: "+cria);
+            System.out.println("Arquivo criado: "+cria);
+            if(!cria) return;
 
             while(linha != null) {
                 String[] campos = linha.split(",");
