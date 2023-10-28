@@ -19,4 +19,9 @@ public class Revista extends ItemDeMidia{
     public boolean pesquisar(String termo){
         return getTitulo().toLowerCase().contains(termo.toLowerCase());
     }
+
+    @Override
+    public String toString(){
+        return ("Título = "+titulo+"\nAno Publicação = "+lancamento+"\nNúmero da Edição = "+edicao+"\n");
+    }
 }

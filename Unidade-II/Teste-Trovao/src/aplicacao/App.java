@@ -12,61 +12,41 @@ public class App {
         Scanner ler = new Scanner(System.in);
         Biblioteca saraiva = new Biblioteca();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        int op=0;
 
-        do {
-            System.out.printf("Bem vindo(a) à Saraiva!\n\n1 - Adicionar um Livro/Revista\n2 - Remover um Livro/Revista\n3 - Pesquisar um Livro/Revista\n0 - Sair\n\nOpção: ");
-            op = ler.nextInt(); ler.nextLine();
-            switch (op){
-                case 1: System.out.printf("\n---- Adicionar novo Livro/Revista ----\n\nLivro ou Revista?: "); char LR = ler.next().charAt(0); ler.nextLine();
-                        if(LR!='R'&&LR!='r'&&LR!='L'&&LR!='l'){
-                            System.out.printf("Opção inválida!\n"); break;
+        System.out.printf("Informe o número de mídias: "); int qt = ler.nextInt();
+
+        for(int i=1;i<=qt;i++){
+            System.out.println("*** Dados da Mídia "+i+" ***");
+            System.out.printf("Qual o tipo (1)Livro (2)Revista: "); int op = ler.nextInt(); ler.nextLine();
+            System.out.printf("Informe o título: "); String titulo = ler.nextLine();
+            System.out.printf("Informe o ano de publicação: "); int pub = ler.nextInt();
+
+            switch(op){
+                case 1: System.out.printf("Informe o ISBN: "); ler.nextLine(); String isbn = ler.nextLine();
+                        System.out.printf("Informe o número de autores: "); int numaut = ler.nextInt(); ler.nextLine();
+                        Livro livro = new Livro(titulo, pub, isbn);
+                        for(int j=0;j<numaut;j++){
+                            System.out.printf("Informe o nome do autor %d: ", (j+1)); String nome = ler.nextLine();
+                            System.out.printf("Informe a data de nascimento: "); String data = ler.nextLine();
+                            livro.addAutor(new Autor(nome, sdf.parse(data)));
                         }
-                        System.out.printf("Título: "); String titulo = ler.nextLine();
-                        System.out.printf("Ano de lançamento (yyyy): "); int ano = ler.nextInt();
-                        if(LR=='l' || LR=='L'){
-                            System.out.printf("ISBN: "); ler.nextLine(); String ISBN = ler.nextLine();
-                            System.out.printf("Nome do autor: "); String nome = ler.nextLine();
-                            System.out.printf("Nascimento do autor: "); String nascimento = ler.nextLine(); Date data = sdf.parse(nascimento);
-                            saraiva.addItem(new Livro(titulo, ano, ISBN, new Autor(nome, data)));
-                        }
-                        if(LR=='R' || LR=='r'){
-                            System.out.printf("Edição: "); int edicao = ler.nextInt();
-                            saraiva.addItem(new Revista(titulo, ano, edicao));
-                        }
+                        saraiva.addItem(livro);
                         break;
 
-                case 2: System.out.printf("\n---- Remover um Livro/Revista ----\n\nDigite o título que deseja remover: "); titulo = ler.nextLine();
-                        for(ItemDeMidia item : saraiva.getNaruto()){
-                            if(titulo.equals(item.getTitulo())){ 
-                                saraiva.remItem(item); break;
-                            }
-                        }
-                        break;
-
-                case 3: System.out.printf("\n---- Pesquisar por Títulos ----\n\nPesquisar por Título ou Autor?: "); LR = ler.next().charAt(0);
-                        if(LR=='T' || LR=='t'){
-                            System.out.printf("Digite o título que deseja buscar: "); ler.nextLine(); titulo = ler.nextLine();
-                            System.out.println("Título(s) encontrado(s):");
-                            for(ItemDeMidia item : saraiva.getNaruto()){
-                                if(item.pesquisar(titulo)){
-                                    System.out.println("- "+item.getTitulo());
-                                }
-                            }
-                        }
-                        if(LR=='A' || LR=='a'){
-                            System.out.printf("Digite o autor que deseja buscar: "); ler.nextLine(); titulo = ler.nextLine();
-                            System.out.println("Título(s) encontrado(s):");
-                            for(ItemDeMidia item : saraiva.getNaruto()){
-                                if(item instanceof Livro){
-                                    if(((Livro)item).getAutor().pesquisar(titulo))
-                                        System.out.println("- "+item.getTitulo());
-                                }
-                            }
-                        }
+                case 2: System.out.printf("Qual o número de edição da revista: "); int edi = ler.nextInt(); ler.nextLine();
+                        saraiva.addItem(new Revista(titulo, pub, edi));
                         break;
             }
-        }while(op!=0);
+        }
+
+        System.out.println("*** Acervo da Biblioteca ***");
+        for(ItemDeMidia item : saraiva.getAcervo()){
+            System.out.println(item+"----------");
+        }
+
+        System.out.printf("Qual o título a ser pesquisado: "); String nome = ler.nextLine();
+        System.out.println(saraiva.pesquisarItem(nome));
+        
         ler.close();
     }
 }

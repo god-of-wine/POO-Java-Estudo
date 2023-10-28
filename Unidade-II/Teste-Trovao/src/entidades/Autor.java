@@ -2,9 +2,7 @@ package entidades;
 
 import java.util.Date;
 
-import servicos.Pesquisavel;
-
-public class Autor implements Pesquisavel{
+public class Autor{
     private String nome;
     private Date nascimento;
     
@@ -27,8 +25,5 @@ public class Autor implements Pesquisavel{
 
     public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
-    }
-    public boolean pesquisar(String nome){
-        return getNome().toLowerCase().contains(nome.toLowerCase());
     }
 }
