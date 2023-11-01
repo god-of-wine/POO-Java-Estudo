@@ -3,7 +3,6 @@ package aplicacao;
 import entidades.*;
 
 import java.util.Scanner;
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
