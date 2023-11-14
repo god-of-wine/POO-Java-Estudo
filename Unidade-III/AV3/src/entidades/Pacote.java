@@ -7,7 +7,8 @@ import servicos.TipoEntrega;
 
 public class Pacote {
     private String descricao;
-    private Integer altura, largura, comprimento, peso;
+    private Dimensao dimensao;
+    private Integer peso;
     private String nome_remetente, cep_remetente;
     private String nome_destinatario, cep_destinatario, cpf_destinatario, endereco;
     private String codigo;
@@ -16,14 +17,12 @@ public class Pacote {
     private StatusEntrega status_entrega;
     private Date data_envio, data_entrega;
     
-    public Pacote(String descricao, Integer altura, Integer largura, Integer comprimento, Integer peso,
+    public Pacote(String descricao, Dimensao dimensao, Integer peso,
             String nome_remetente, String cep_remetente, String nome_destinatario, String cep_destinatario,
             String cpf_destinatario, String endereco, String codigo, Double frete, Double dias, 
             TipoEntrega tipo_entrega, StatusEntrega status_entrega, Date data_envio, Date data_entrega) {
         this.descricao = descricao;
-        this.altura = altura;
-        this.largura = largura;
-        this.comprimento = comprimento;
+        this.dimensao = dimensao;
         this.peso = peso;
         this.nome_remetente = nome_remetente;
         this.cep_remetente = cep_remetente;
@@ -46,23 +45,11 @@ public class Pacote {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public Integer getAltura() {
-        return altura;
+    public Dimensao getDimensao() {
+        return dimensao;
     }
-    public void setAltura(Integer altura) {
-        this.altura = altura;
-    }
-    public Integer getLargura() {
-        return largura;
-    }
-    public void setLargura(Integer largura) {
-        this.largura = largura;
-    }
-    public Integer getComprimento() {
-        return comprimento;
-    }
-    public void setComprimento(Integer comprimento) {
-        this.comprimento = comprimento;
+    public void setDimensao(Dimensao dimensao) {
+        this.dimensao = dimensao;
     }
     public Integer getPeso() {
         return peso;
