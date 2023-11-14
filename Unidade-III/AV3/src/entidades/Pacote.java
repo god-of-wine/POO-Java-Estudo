@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.Date;
+
 import servicos.StatusEntrega;
 import servicos.TipoEntrega;
 
@@ -12,11 +14,12 @@ public class Pacote {
     private Double frete, dias;
     private TipoEntrega tipo_entrega;
     private StatusEntrega status_entrega;
+    private Date data_envio, data_entrega;
     
     public Pacote(String descricao, Integer altura, Integer largura, Integer comprimento, Integer peso,
             String nome_remetente, String cep_remetente, String nome_destinatario, String cep_destinatario,
             String cpf_destinatario, String endereco, String codigo, Double frete, Double dias, 
-            TipoEntrega tipo_entrega, StatusEntrega status_entrega) {
+            TipoEntrega tipo_entrega, StatusEntrega status_entrega, Date data_envio, Date data_entrega) {
         this.descricao = descricao;
         this.altura = altura;
         this.largura = largura;
@@ -33,6 +36,8 @@ public class Pacote {
         this.dias = dias;
         this.tipo_entrega = tipo_entrega;
         this.status_entrega = status_entrega;
+        this.data_envio = data_envio;
+        this.data_entrega = data_entrega;
     }
 
     public String getDescricao() {
@@ -130,5 +135,21 @@ public class Pacote {
     }
     public void setStatus_entrega(StatusEntrega status_entrega) {
         this.status_entrega = status_entrega;
+    }
+
+    public Date getData_envio() {
+        return data_envio;
+    }
+
+    public void setData_envio(Date data_envio) {
+        this.data_envio = data_envio;
+    }
+
+    public Date getData_entrega() {
+        return data_entrega;
+    }
+
+    public void setData_entrega(Date data_entrega) {
+        this.data_entrega = data_entrega;
     }
 }
