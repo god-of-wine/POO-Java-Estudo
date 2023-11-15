@@ -146,8 +146,8 @@ public class Pacote {
         "\n"+"Descrição do objeto: "+descricao+" - Dimensões do objeto: "+dimensao+" | Peso: "+peso+" Kg"+"\n"+"Código de rastreio: "+codigo+" | Status: "+
         status_entrega+"\n\n"+"Nome do remetente: "+nome_remetente+" | CEP do remetente: "+cep_remetente+"\n\n"+
         "Nome do destinatário: "+nome_destinatario+" | CEP do destinatário: "+cep_destinatario+"\n"+"CPF do destinatário: "+cpf_destinatario+
-        "\n"+"Endereço: "+endereco+"\n\n"+"Data de envio: "+data_envio+" | Data de entrega: "+data_entrega+" | Tipo de frete: "+tipo_entrega+
-        " | Valor do frete: "+frete+"\n"+
+        "\n"+"Endereço: "+endereco+"\n\n"+"Data de envio: "+data_envio+" | Data de entrega: "+data_entrega+" | Tipo de frete: "+tipo_entrega.getNome()+
+        " | Valor do frete: "+String.format("%.2f", frete)+"\n"+
         "---------------------------------------------------------------------------------------------------------------");
     }
 }

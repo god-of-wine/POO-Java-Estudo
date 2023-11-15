@@ -17,6 +17,10 @@ import servicos.ServicosBancoDeDados;
 public class FXMLMenuEditarPacoteController implements Initializable{
     private Pacote pacote;
 
+    public FXMLMenuEditarPacoteController (Pacote pacote){
+        this.pacote = pacote;
+    }
+
     public void loadEdit(){
         alturaField.setText(Integer.toString(pacote.getDimensao().getAltura()));
         descricaoField.setText(pacote.getDescricao());

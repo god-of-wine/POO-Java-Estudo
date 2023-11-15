@@ -16,8 +16,7 @@
             "name": "Programa",
             "request": "launch",
             "mainClass": "aplicacao.Programa",
-            "projectName": "AV3_6a2949f6",
-            //"vmArgs": "--module-path \"C:/Visual_Studio_Codding/Java/JavaLibs/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+            "projectName": "AV3_6a2949f6"
         }
     ]
 }
