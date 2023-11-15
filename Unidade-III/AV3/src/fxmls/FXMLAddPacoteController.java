@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import entidades.Pacote;
 import grafo.Grafo;
 import javafx.collections.FXCollections;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,9 +51,9 @@ public class FXMLAddPacoteController implements Initializable{
     @FXML
     private void concluirBotaoAcao(ActionEvent event) throws Exception{
         sbd.addPacote(descricaoField.getText(), Integer.parseInt(alturaField.getText()), Integer.parseInt(larguraField.getText()), Integer.parseInt(comprimentoField.getText()), Integer.parseInt(pesoField.getText()), nomeRemetenteField.getText(), cepRemetenteField.getText(), nomeDestinatarioField.getText(), cepDestinatarioField.getText(), cpfDestinatarioField.getText(), enderecoArea.getText(), "BR00001POO", frete, dias, freteComboBox.getSelectionModel().getSelectedItem(), StatusEntrega.PAGAMENTO_PENDENTE, java.sql.Date.valueOf(LocalDate.now()), java.sql.Date.valueOf(LocalDate.now().plusDays(dias.intValue())), lista);
-    
+        
+        // fecho a aba quando aperto o botão de concluir
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         stage.close();
     }
 

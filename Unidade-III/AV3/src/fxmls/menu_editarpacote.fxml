@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmls.menu_editarpacote.fxml">
    <children>
       <ImageView fitHeight="560.0" fitWidth="720.0" pickOnBounds="true">
          <image>
@@ -40,48 +39,48 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="221.0" layoutY="212.0" prefHeight="25.0" prefWidth="283.0" />
+      <TextField fx:id="descricaoField" layoutX="221.0" layoutY="212.0" prefHeight="25.0" prefWidth="283.0" />
       <Label layoutX="59.0" layoutY="250.0" text="Dimensões do objeto:" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="229.0" layoutY="250.0" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: grey;">
+      <TextField fx:id="alturaField" editable="false" layoutX="229.0" layoutY="250.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
-      <TextField editable="false" layoutX="272.0" layoutY="250.0" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: grey;">
+      <TextField fx:id="larguraField" editable="false" layoutX="272.0" layoutY="250.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
-      <TextField editable="false" layoutX="315.0" layoutY="250.0" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: grey;">
+      <TextField fx:id="comprimentoField" editable="false" layoutX="315.0" layoutY="250.0" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
-      <TextField editable="false" layoutX="381.0" layoutY="250.0" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: grey;">
+      <TextField fx:id="pesoField" editable="false" layoutX="381.0" layoutY="250.0" prefHeight="25.0" prefWidth="46.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
-      <Label layoutX="261.0" layoutY="254.0" text="x" textFill="WHITE">
+      <Label layoutX="265.0" layoutY="254.0" text="x" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="304.0" layoutY="254.0" text="x" textFill="WHITE">
+      <Label layoutX="308.0" layoutY="254.0" text="x" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="343.0" layoutY="259.0" text="cm" textFill="WHITE">
+      <Label layoutX="350.0" layoutY="259.0" text="cm" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="422.0" layoutY="259.0" text="Kg" textFill="WHITE">
+      <Label layoutX="427.0" layoutY="259.0" text="Kg" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font>
@@ -96,13 +95,13 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="221.0" layoutY="314.0" prefHeight="25.0" prefWidth="283.0" />
+      <TextField fx:id="nomeRemetenteField" layoutX="221.0" layoutY="314.0" prefHeight="25.0" prefWidth="283.0" />
       <Label layoutX="514.0" layoutY="314.0" text="CEP:" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="553.0" layoutY="314.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: grey;">
+      <TextField fx:id="cepRemetenteField" editable="false" layoutX="553.0" layoutY="314.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -117,13 +116,13 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="233.0" layoutY="378.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextField fx:id="nomeDestinatarioField" layoutX="233.0" layoutY="378.0" prefHeight="25.0" prefWidth="271.0" />
       <Label layoutX="514.0" layoutY="378.0" text="CEP:" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="553.0" layoutY="378.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: grey;">
+      <TextField fx:id="cepDestinatarioField" editable="false" layoutX="553.0" layoutY="378.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -133,18 +132,18 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="97.0" layoutY="425.0" prefHeight="25.0" prefWidth="98.0" />
+      <TextField fx:id="cpfDestinatarioField" layoutX="97.0" layoutY="425.0" prefHeight="25.0" prefWidth="98.0" />
       <Label layoutX="219.0" layoutY="427.0" text="Endereço:" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="301.0" layoutY="416.0" prefHeight="40.0" prefWidth="203.0" style="-fx-background-color: grey;">
+      <TextArea fx:id="enderecoArea" editable="false" layoutX="301.0" layoutY="416.0" prefHeight="40.0" prefWidth="203.0" style="-fx-background-color: grey;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextArea>
-      <Button defaultButton="true" layoutX="540.0" layoutY="491.0" mnemonicParsing="false" text="CONCLUIR" textFill="WHITE">
+      <Button fx:id="concluirBotao" defaultButton="true" layoutX="540.0" layoutY="491.0" mnemonicParsing="false" onAction="#concluirBotaoAcao" text="CONCLUIR" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="25.0" />
          </font>
@@ -152,7 +151,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField editable="false" layoutX="72.0" layoutY="479.0" prefHeight="25.0" prefWidth="271.0" style="-fx-background-color: grey;" text="Tipo: XXXXXXXX | Frete: R$XX,XX | XX dias">
+      <TextField fx:id="tipoFretePrazoField" editable="false" layoutX="72.0" layoutY="479.0" prefHeight="25.0" prefWidth="271.0" style="-fx-background-color: grey;" text="Tipo: XXXXXXXX | Frete: R$XX,XX | XX dias">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
