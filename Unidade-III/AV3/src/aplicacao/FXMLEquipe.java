@@ -1,3 +1,5 @@
+// Classe que inicializa a aba de Mostrar a Equipe
+
 package aplicacao;
 
 import javafx.application.Application;

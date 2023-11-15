@@ -14,7 +14,7 @@ public class FXMLMenuPrincipalController {
     @FXML
     private Button addPacoteBotao;
     
-    @FXML
+    @FXML // Adicionando a ação ao clicar no botão
     private void addPacoteBotaoAcao(ActionEvent event) throws Exception{
         FXMLAddPacote fxmlAddPacote = new FXMLAddPacote();
 
@@ -24,7 +24,7 @@ public class FXMLMenuPrincipalController {
     @FXML
     private Button editPacoteBotao;
 
-    @FXML
+    @FXML // Adicionando a ação ao clicar no botão
     private void editPacoteBotaoAcao(ActionEvent event) throws Exception{
         FXMLEditPacote fxmlEditPacote = new FXMLEditPacote();
 
@@ -34,7 +34,7 @@ public class FXMLMenuPrincipalController {
     @FXML
     private Button equipeBotao;
 
-    @FXML
+    @FXML // Adicionando a ação ao clicar no botão
     private void equipeBotaoAcao(ActionEvent event) throws Exception{
         FXMLEquipe fxmlEquipe = new FXMLEquipe();
 
@@ -44,7 +44,7 @@ public class FXMLMenuPrincipalController {
     @FXML
     private Button rastrearPacoteBotao;
 
-    @FXML
+    @FXML // Adicionando a ação ao clicar no botão
     private void rastrearPacoteBotaoAcao(ActionEvent event) throws Exception{
         FXMLRastrearPacote fxmlRastrearPacote = new FXMLRastrearPacote();
 

@@ -5,12 +5,12 @@ public class FreteEconomico implements FretePrazo{
         if(distancia==0) return 10.0;
         int pesocubico = (altura*largura*comprimento)/6000;
         if(pesocubico > peso){
-            return pesocubico * (distancia/100.0);
+            return pesocubico/2.0 * (distancia/100.0);
         }
-        else return peso * (distancia/100.0);
+        else return peso/2.0 * (distancia/100.0);
     }
 
     public Double CalculaPrazo(int distancia){
-        return Math.ceil((distancia/80.0)/24.0);
+        return ((distancia/80.0)/24.0)+2;
     }
 }

@@ -1,3 +1,5 @@
+// Classe que inicializa a aba de Rastrear Pacotes
+
 package aplicacao;
 
 import javafx.application.Application;

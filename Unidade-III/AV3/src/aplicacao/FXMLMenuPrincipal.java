@@ -1,3 +1,4 @@
+// Classe que inicializa a aba do Menu Principal
 package aplicacao;
 
 import javafx.application.Application;

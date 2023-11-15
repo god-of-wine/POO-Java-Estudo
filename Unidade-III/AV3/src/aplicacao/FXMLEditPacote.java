@@ -1,3 +1,5 @@
+// Classe que inicializa a aba de Editar Pacotes
+
 package aplicacao;
 
 import javafx.fxml.FXMLLoader;

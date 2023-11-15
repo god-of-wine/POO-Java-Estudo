@@ -7,6 +7,7 @@ public class Grafo {
     private Integer sedes;
     private List<List<Aresta>> adjacencia;
 
+    // Construtor do grafo que cria um grafo com um numero X de Vértices
     public Grafo(Integer sedes){
         this.sedes = sedes;
         adjacencia = new ArrayList<>(sedes);
@@ -15,6 +16,7 @@ public class Grafo {
         }
     }
 
+    // Função que adiciona uma aresta que pode ir e voltar no grafo
     public void addAresta(Integer origem, Integer destino, Integer kilometros){
         adjacencia.get(origem).add(new Aresta(kilometros, destino));
         adjacencia.get(destino).add(new Aresta(kilometros, origem));

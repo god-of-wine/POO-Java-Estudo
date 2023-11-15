@@ -15,4 +15,9 @@ public class DimensaoCilindro extends Dimensao{
     public void setDiametro(Integer diametro) {
         this.diametro = diametro;
     }
+
+    @Override
+    public String toString(){
+        return (super.getAltura()+" x "+(diametro/2)+"² x "+Math.PI+" cm³");
+    }
 }

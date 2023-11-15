@@ -21,4 +21,9 @@ public class DimensaoCaixa extends Dimensao{
     public void setLargura(Integer largura) {
         this.largura = largura;
     }
+
+    @Override
+    public String toString(){
+        return (super.getAltura()+" x "+comprimento+" x "+largura+" cm³");
+    }
 }
