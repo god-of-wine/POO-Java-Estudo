@@ -1,7 +1,9 @@
 package servicos;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,6 +49,25 @@ public class ServicosBancoDeDados {
         n5 = Math.abs((rand.nextInt()%10));
 
         return ("BR"+n1+n2+n3+n4+n5+"POO");
+    }
+
+    public void createList(ArrayList<Pacote> listaBDD) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        listaBDD.clear();
+
+        // ler as linhas do arquivo
+        try(BufferedReader bReader = new BufferedReader(new FileReader("src/entidades/BancoDeDados.csv"))){
+            String linha = bReader.readLine();
+
+            while(linha != null){
+                String[] campos = linha.split(",");
+                if(Integer.parseInt(campos[3]) == 0) listaBDD.add(new Pacote(campos[0], new DimensaoCilindro(Integer.parseInt(campos[1]), Integer.parseInt(campos[2])), Integer.parseInt(campos[4]), campos[5], campos[6], campos[7], campos[8], campos[9], campos[10], campos[11], Double.parseDouble(campos[12]), Double.parseDouble(campos[13]), TipoEntrega.valueOf(campos[14]), StatusEntrega.valueOf(campos[15]), sdf.parse(campos[16]), sdf.parse(campos[17])));
+                else listaBDD.add(new Pacote(campos[0], new DimensaoCaixa(Integer.parseInt(campos[1]), Integer.parseInt(campos[2]), Integer.parseInt(campos[3])), Integer.parseInt(campos[4]), campos[5], campos[6], campos[7], campos[8], campos[9], campos[10], campos[11], Double.parseDouble(campos[12]), Double.parseDouble(campos[13]), TipoEntrega.valueOf(campos[14]), StatusEntrega.valueOf(campos[15]), sdf.parse(campos[16]), sdf.parse(campos[17])));
+                linha = bReader.readLine();
+            }
+        } catch(IOException e){
+            
+        }
     }
 
     public void atualizaBanco (Pacote pacote) throws FileNotFoundException, ParseException {

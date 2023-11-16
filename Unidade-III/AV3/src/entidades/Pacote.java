@@ -1,5 +1,6 @@
 package entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import servicos.StatusEntrega;
@@ -16,6 +17,8 @@ public class Pacote {
     private TipoEntrega tipo_entrega;
     private StatusEntrega status_entrega;
     private Date data_envio, data_entrega;
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     public Pacote(String descricao, Dimensao dimensao, Integer peso,
             String nome_remetente, String cep_remetente, String nome_destinatario, String cep_destinatario,
@@ -146,7 +149,7 @@ public class Pacote {
         "\n"+"Descrição do objeto: "+descricao+" - Dimensões do objeto: "+dimensao+" | Peso: "+peso+" Kg"+"\n"+"Código de rastreio: "+codigo+" | Status: "+
         status_entrega+"\n\n"+"Nome do remetente: "+nome_remetente+" | CEP do remetente: "+cep_remetente+"\n\n"+
         "Nome do destinatário: "+nome_destinatario+" | CEP do destinatário: "+cep_destinatario+"\n"+"CPF do destinatário: "+cpf_destinatario+
-        "\n"+"Endereço: "+endereco+"\n\n"+"Data de envio: "+data_envio+" | Data de entrega: "+data_entrega+" | Tipo de frete: "+tipo_entrega.getNome()+
+        "\n"+"Endereço: "+endereco+"\n\n"+"Data de envio: "+sdf.format(data_envio)+" | Data de entrega: "+sdf.format(data_entrega)+" | Tipo de frete: "+tipo_entrega.getNome()+
         " | Valor do frete: "+String.format("%.2f", frete)+"\n"+
         "---------------------------------------------------------------------------------------------------------------");
     }

@@ -24,6 +24,6 @@ public class DimensaoCaixa extends Dimensao{
 
     @Override
     public String toString(){
-        return (super.getAltura()+" x "+comprimento+" x "+largura+" cm³");
+        return (super.getAltura()+" x "+largura+" x "+comprimento+" cm³");
     }
 }

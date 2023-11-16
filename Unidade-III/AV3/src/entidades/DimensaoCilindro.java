@@ -18,6 +18,6 @@ public class DimensaoCilindro extends Dimensao{
 
     @Override
     public String toString(){
-        return (super.getAltura()+" x "+(diametro/2)+"² x "+Math.PI+" cm³");
+        return (super.getAltura()+" x "+String.format("%.1f² x %.2f cm³", (double)(diametro/2), Math.PI));
     }
 }
