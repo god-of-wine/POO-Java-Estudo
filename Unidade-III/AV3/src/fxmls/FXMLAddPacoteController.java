@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import aplicacao.FXMLRastreio;
-import entidades.Pacote;
 import grafo.Grafo;
 import javafx.collections.FXCollections;
 
@@ -31,7 +30,6 @@ import servicos.TipoEntrega;
 public class FXMLAddPacoteController implements Initializable{
     // esses itens serão usados por mais de uma função, portanto serão criados aqui
     Double frete, dias;
-    ArrayList<Pacote> lista = new ArrayList<>();
 
     @FXML
     private TextField alturaField;
@@ -52,7 +50,7 @@ public class FXMLAddPacoteController implements Initializable{
     @FXML
     private void concluirBotaoAcao(ActionEvent event) throws Exception{
         String codRastreio  = sbd.geraRastreio();
-        sbd.addPacote(descricaoField.getText(), Integer.parseInt(alturaField.getText()), Integer.parseInt(larguraField.getText()), Integer.parseInt(comprimentoField.getText()), Integer.parseInt(pesoField.getText()), nomeRemetenteField.getText(), cepRemetenteField.getText(), nomeDestinatarioField.getText(), cepDestinatarioField.getText(), cpfDestinatarioField.getText(), enderecoArea.getText(), codRastreio, frete, dias, freteComboBox.getSelectionModel().getSelectedItem(), StatusEntrega.PAGAMENTO_PENDENTE, java.sql.Date.valueOf(LocalDate.now()), java.sql.Date.valueOf(LocalDate.now().plusDays(dias.intValue())), lista);
+        sbd.addPacote(descricaoField.getText(), Integer.parseInt(alturaField.getText()), Integer.parseInt(larguraField.getText()), Integer.parseInt(comprimentoField.getText()), Integer.parseInt(pesoField.getText()), nomeRemetenteField.getText(), cepRemetenteField.getText(), nomeDestinatarioField.getText(), cepDestinatarioField.getText(), cpfDestinatarioField.getText(), enderecoArea.getText(), codRastreio, frete, dias, freteComboBox.getSelectionModel().getSelectedItem(), StatusEntrega.PAGAMENTO_PENDENTE, java.sql.Date.valueOf(LocalDate.now()), java.sql.Date.valueOf(LocalDate.now().plusDays(dias.intValue())));
         // abre a tela com o código de rastreio do pacote adicionado
         FXMLRastreio fxmlRastreio = new FXMLRastreio();
         fxmlRastreio.start(new Stage(), codRastreio);

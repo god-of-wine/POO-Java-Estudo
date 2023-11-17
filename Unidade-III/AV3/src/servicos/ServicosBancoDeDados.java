@@ -26,29 +26,29 @@ public class ServicosBancoDeDados {
     public void addPacote(String descricao, Integer altura, Integer largura, Integer comprimento, Integer peso, 
                 String nomeRemetente, String cepRemetente, String nomeDestinatario, String cepDestinatario,
                 String cpfDestinatario, String endereco, String codigo, Double frete, Double dias, TipoEntrega tipoEntrega,
-                StatusEntrega statusEntrega, Date dataEnvio, Date dataEntrega, ArrayList<Pacote> lista) {
+                StatusEntrega statusEntrega, Date dataEnvio, Date dataEntrega) {
         try(PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Paths.get("src/entidades/BancoDeDados.csv"), java.nio.file.StandardOpenOption.APPEND))){
             writer.println(descricao+","+altura+","+largura+","+comprimento+","+peso+","+nomeRemetente+","+cepRemetente+","+nomeDestinatario+","+cepDestinatario+","
             +cpfDestinatario+","+endereco+","+codigo+","+frete+","+dias+","+tipoEntrega+","+statusEntrega+","+sdf.format(dataEnvio)+","+sdf.format(dataEntrega));
         }catch (IOException e){
             e.printStackTrace();
         }
-
-        if(comprimento==0) lista.add(new Pacote(descricao, new DimensaoCilindro(altura, largura), peso, nomeRemetente, cepRemetente, nomeDestinatario, cepDestinatario, cpfDestinatario, endereco, codigo, frete, dias, tipoEntrega, statusEntrega, dataEnvio, dataEntrega));
-        else lista.add(new Pacote(descricao, new DimensaoCaixa(altura, largura, comprimento), peso, nomeRemetente, cepRemetente, nomeDestinatario, cepDestinatario, cpfDestinatario, endereco, codigo, frete, dias, tipoEntrega, statusEntrega, dataEnvio, dataEntrega));
     }
 
     public String geraRastreio(){
         Random rand = new Random();
-        int n1, n2, n3, n4, n5;
+        int n1, n2, n3, n4, n5, n6, n7, n8;
 
         n1 = Math.abs((rand.nextInt()%10));
         n2 = Math.abs((rand.nextInt()%10));
         n3 = Math.abs((rand.nextInt()%10));
         n4 = Math.abs((rand.nextInt()%10));
         n5 = Math.abs((rand.nextInt()%10));
+        n6 = Math.abs((rand.nextInt()%10));
+        n7 = Math.abs((rand.nextInt()%10));
+        n8 = Math.abs((rand.nextInt()%10));
 
-        return ("BR"+n1+n2+n3+n4+n5+"POO");
+        return ("BR"+n1+n2+n3+n4+n5+n6+n7+n8+"POO");
     }
 
     public void createList(ArrayList<Pacote> listaBDD) throws ParseException{
@@ -67,6 +67,23 @@ public class ServicosBancoDeDados {
             }
         } catch(IOException e){
             
+        }
+    }
+
+    public void updateBanco (ArrayList<Pacote> listaBBD){
+        File auxiliar = new File("src/entidades", "temporario.csv");
+        try {
+            auxiliar.createNewFile();
+
+            // escrever os dados no arquivo
+            for (Pacote pacote : listaBBD){
+                if(pacote.getDimensao() instanceof DimensaoCaixa) addPacote(pacote.getDescricao(), pacote.getDimensao().getAltura(), ((DimensaoCaixa)pacote.getDimensao()).getLargura(), ((DimensaoCaixa)pacote.getDimensao()).getComprimento(), pacote.getPeso(), pacote.getNome_remetente(), pacote.getCep_remetente(), pacote.getNome_destinatario(), pacote.getCep_destinatario(), pacote.getCpf_destinatario(), pacote.getEndereco(), pacote.getCodigo(), pacote.getFrete(), pacote.getDias(), pacote.getTipo_entrega(), pacote.getStatus_entrega(), pacote.getData_envio(), pacote.getData_entrega());
+                else addPacote(pacote.getDescricao(), pacote.getDimensao().getAltura(), ((DimensaoCilindro)pacote.getDimensao()).getDiametro(), 0, pacote.getPeso(), pacote.getNome_remetente(), pacote.getCep_remetente(), pacote.getNome_destinatario(), pacote.getCep_destinatario(), pacote.getCpf_destinatario(), pacote.getEndereco(), pacote.getCodigo(), pacote.getFrete(), pacote.getDias(), pacote.getTipo_entrega(), pacote.getStatus_entrega(), pacote.getData_envio(), pacote.getData_entrega());
+            }
+            Files.delete(Paths.get("src/entidades/BancoDeDados.csv"));
+            Files.move(Paths.get("src/entidades/temporario.csv"), Paths.get("src/entidades/BancoDeDados.csv"));
+        } catch (IOException e){
+
         }
     }
 
@@ -125,30 +142,9 @@ public class ServicosBancoDeDados {
         input.close();
     }
 
-    // Método para pegar as info do csv e por numa lista
-    public static void addCSVinList(File caminhoDoArquivo) throws FileNotFoundException {
-        
-        Scanner input = new Scanner(caminhoDoArquivo);
-        
-        while (input.hasNextLine()) {
-            //String line = input.nextLine();
-            //String[] info = line.split(",");
-
-            //Pacote pacote = new Pacote();
-
-        }
-
-
-        input.close();
-    }
-
     // Método para adicionar um dia a uma data
     private static Date addDay(Date data) {
         long umDiaEmMs = 24 * 60 * 60 * 1000; // Um dia em milissegundos
         return new Date(data.getTime() + umDiaEmMs); // criando uma nova Date com o valor da anterior + o valor de 1 dia em Ms.
     }
-
-
-    //Método para pegar as info de uma lista e porno csv
-
 }
