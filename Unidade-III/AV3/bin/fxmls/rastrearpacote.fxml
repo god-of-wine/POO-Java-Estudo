@@ -67,12 +67,12 @@
             <Font name="Ebrima Bold" size="13.0" />
          </font>
       </Label>
-      <ComboBox fx:id="filtrarComboBox" layoutX="523.0" layoutY="116.0" prefHeight="25.0" prefWidth="167.0" promptText="FILTRAR">
+      <ComboBox fx:id="filtrarComboBox" layoutX="523.0" layoutY="116.0" prefHeight="25.0" prefWidth="167.0" promptText="ORDENAR">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Button fx:id="buscarBotao" defaultButton="true" layoutX="407.0" layoutY="116.0" mnemonicParsing="false" text="BUSCAR" textFill="WHITE">
+      <Button fx:id="buscarBotao" defaultButton="true" layoutX="407.0" layoutY="116.0" mnemonicParsing="false" onAction="#buscarBotaoAcao" text="BUSCAR" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font>
