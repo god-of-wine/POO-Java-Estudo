@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Scanner;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -12,6 +11,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -74,77 +74,36 @@ public class ServicosBancoDeDados {
         File auxiliar = new File("src/entidades", "temporario.csv");
         try {
             auxiliar.createNewFile();
-
+            Files.delete(Paths.get("src/entidades/BancoDeDados.csv"));
+            Files.move(Paths.get("src/entidades/temporario.csv"), Paths.get("src/entidades/BancoDeDados.csv"));
             // escrever os dados no arquivo
             for (Pacote pacote : listaBBD){
                 if(pacote.getDimensao() instanceof DimensaoCaixa) addPacote(pacote.getDescricao(), pacote.getDimensao().getAltura(), ((DimensaoCaixa)pacote.getDimensao()).getLargura(), ((DimensaoCaixa)pacote.getDimensao()).getComprimento(), pacote.getPeso(), pacote.getNome_remetente(), pacote.getCep_remetente(), pacote.getNome_destinatario(), pacote.getCep_destinatario(), pacote.getCpf_destinatario(), pacote.getEndereco(), pacote.getCodigo(), pacote.getFrete(), pacote.getDias(), pacote.getTipo_entrega(), pacote.getStatus_entrega(), pacote.getData_envio(), pacote.getData_entrega());
                 else addPacote(pacote.getDescricao(), pacote.getDimensao().getAltura(), ((DimensaoCilindro)pacote.getDimensao()).getDiametro(), 0, pacote.getPeso(), pacote.getNome_remetente(), pacote.getCep_remetente(), pacote.getNome_destinatario(), pacote.getCep_destinatario(), pacote.getCpf_destinatario(), pacote.getEndereco(), pacote.getCodigo(), pacote.getFrete(), pacote.getDias(), pacote.getTipo_entrega(), pacote.getStatus_entrega(), pacote.getData_envio(), pacote.getData_entrega());
             }
-            Files.delete(Paths.get("src/entidades/BancoDeDados.csv"));
-            Files.move(Paths.get("src/entidades/temporario.csv"), Paths.get("src/entidades/BancoDeDados.csv"));
         } catch (IOException e){
 
         }
     }
 
-    public void atualizaBanco (Pacote pacote) throws FileNotFoundException, ParseException {
-
-        File banco = new File("/src/entidades/BancoDeDados.csv");
-
-        Scanner input = new Scanner(banco);
-
-        while(input.hasNextLine()) {
-
-            String line = input.nextLine(); 
-            String info[] = line.split(",");
-
-            if(info[15] != "OBJETO_ENTREGUE") {
-
-                // if(sdf.parse(info[16]) == java.sql.Date.valueOf(LocalDate.now())) {// se a data de envio for igual a data do dia: pagamento pendente.
-                //     info[15] = "PAGAMENTO_PENDENTE";
-                // } 
-                // REDUNDANTE, POIS TODOS OS STATUS POR DEFAULT SERÃO DEFINIDOS COMO "PAGAMENTO_PENDENTE".
-
-                if(java.sql.Date.valueOf(LocalDate.now()) == addDay(sdf.parse(info[17]))) {// se a data do dia for igual a data de entrega + 1 dia : objeto postado.
-                    info[15] = "OBJETO_POSTADO";
+    public void atualizaStatus (ArrayList<Pacote> lista) throws FileNotFoundException, ParseException {
+        for(Pacote pacote : lista){
+            if(pacote.getStatus_entrega() != StatusEntrega.OBJETO_ENTREGUE) {
+            LocalDate hoje = LocalDate.now();
+            LocalDate dataEntrega = pacote.getData_entrega().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate dataPostagem = pacote.getData_envio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
+            if(hoje.equals(dataPostagem.plusDays(1))) {// se a data do dia for igual a data de entrega + 1 dia : objeto postado.
+                pacote.setStatus_entrega(StatusEntrega.OBJETO_POSTADO);
+            } else {
+                if (hoje.equals(dataEntrega) || hoje.isAfter(dataEntrega)) {
+                    pacote.setStatus_entrega(StatusEntrega.OBJETO_ENTREGUE);
+                } else {
+                    pacote.setStatus_entrega(StatusEntrega.OBJETO_EM_TRANSITO);
                 }
-
-                if(java.sql.Date.valueOf(LocalDate.now()) == sdf.parse(info[17])) {// se a data do dia for igual a data de entrega : objeto entregue.
-                    info[15] = "OBJETO_ENTREGUE";
-                }
-
-                else {
-                    info[15] = "OBJETO_EM_TRANSITO";
-                }
-
             }
-
+            }
         }
-
-        /* CONVENÇÕES DA STRING[] (Vetor de Strings)
-        info[0] = descrição
-        info[1] = peso
-        info[2] = nome Remetente
-        info[3] = cep Remetente
-        info[4] = nome destinatario
-        info[5] = cep Destinatario
-        info[6] = cpf destinatario
-        info[7] = endereco destinatario
-        info[8] = codigo de postagem
-        info[9] = frete entrega
-        info[10] = dias entrega
-        info[11] = tipo frete entrega
-        info[12] = status pagamento
-        info[13] = data envio
-        info[14] = data entrega
-        */
-
-        input.close();
-    }
-
-    // Método para adicionar um dia a uma data
-    private static Date addDay(Date data) {
-        long umDiaEmMs = 24 * 60 * 60 * 1000; // Um dia em milissegundos
-        return new Date(data.getTime() + umDiaEmMs); // criando uma nova Date com o valor da anterior + o valor de 1 dia em Ms.
+        
     }
 }

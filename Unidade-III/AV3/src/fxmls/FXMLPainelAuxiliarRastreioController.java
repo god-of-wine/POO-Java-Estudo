@@ -8,16 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 
-public class FXMLPainelAuxiliarRastreioController implements Initializable{
-    private String info;
+public class FXMLPainelAuxiliarRastreioController implements Initializable {
 
     public void setInfo(String info){
-        this.info=info;
         infoPacoteArea.setText(info);
-    }
-
-    public String getInfo(){
-        return info;
     }
     
     @FXML

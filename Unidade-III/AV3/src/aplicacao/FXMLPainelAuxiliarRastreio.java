@@ -17,7 +17,6 @@ public class FXMLPainelAuxiliarRastreio {
         fxmlPARController.setInfo(texto);
 
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
     }
 }

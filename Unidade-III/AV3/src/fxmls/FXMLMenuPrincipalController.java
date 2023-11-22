@@ -31,8 +31,10 @@ public class FXMLMenuPrincipalController {
     @FXML // Adicionando a ação ao clicar no botão
     private void editPacoteBotaoAcao(ActionEvent event) throws Exception{
         FXMLEditPacote fxmlEditPacote = new FXMLEditPacote();
-
-        fxmlEditPacote.start(new Stage());
+        ArrayList<Pacote> lista = new ArrayList<>();
+        ServicosBancoDeDados sdb = new ServicosBancoDeDados();
+        sdb.createList(lista);
+        fxmlEditPacote.start(new Stage(), lista);
     }
 
     @FXML

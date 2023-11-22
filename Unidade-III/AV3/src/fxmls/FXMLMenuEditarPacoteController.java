@@ -1,8 +1,10 @@
 package fxmls;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import aplicacao.FXMLEditPacote;
 import entidades.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,9 +18,14 @@ import servicos.ServicosBancoDeDados;
 
 public class FXMLMenuEditarPacoteController implements Initializable{
     private Pacote pacote;
+    private ArrayList<Pacote> listaBBD;
+    private Stage fonte;
 
-    public FXMLMenuEditarPacoteController (Pacote pacote){
+    public void setPacoteLista (Pacote pacote, ArrayList<Pacote> lista, Stage fonte){
         this.pacote = pacote;
+        this.listaBBD = lista;
+        this.fonte = fonte;
+        loadEdit();
     }
 
     public void loadEdit(){
@@ -59,12 +66,16 @@ public class FXMLMenuEditarPacoteController implements Initializable{
 
     ServicosBancoDeDados sbd = new ServicosBancoDeDados();
     @FXML
-    private void concluirBotaoAcao(ActionEvent event){
+    private void concluirBotaoAcao(ActionEvent event) throws Exception{
         pacote.setDescricao(descricaoField.getText());
         pacote.setNome_remetente(nomeRemetenteField.getText());
         pacote.setNome_destinatario(nomeDestinatarioField.getText());
         pacote.setCpf_destinatario(cpfDestinatarioField.getText());
-        
+
+        sbd.updateBanco(listaBBD);
+        fonte.close();
+        FXMLEditPacote fxmlMPE = new FXMLEditPacote();
+        fxmlMPE.start(new Stage(), listaBBD);
         // fecho a aba quando aperto no botão de concluir
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
@@ -96,6 +107,5 @@ public class FXMLMenuEditarPacoteController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        loadEdit();
     }
 }
