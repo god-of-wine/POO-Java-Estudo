@@ -20,7 +20,7 @@ public class UIabaEditarExcluir extends Application{
        apesar de não usarmos */
     public void start(Stage stage){}
 
-    /* definindo um método start que recebe um Pacote, uma ArrayList<Pacote
+    /* definindo um método start que recebe um Pacote, uma ArrayList<Pacote>
        e um Stage. Este será o método start que usaremos */
     public void start(Stage stage, Pacote pacote, ArrayList<Pacote> lista, Stage fonte) throws Exception{
 
