@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.controller.menuEditarPacoteController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="720.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../imagens/geral/gradient_background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="220.0" fitWidth="230.0" layoutX="-32.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagens/geral/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="158.0" layoutY="52.0" text="- EDITAR / EXCLUIR PACOTES -" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="37.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="scrollPanel" fitToHeight="true" layoutX="43.0" layoutY="159.0" prefHeight="530.0" prefWidth="635.0">
+         <content>
+            <GridPane fx:id="gridPanel" gridLinesVisible="true" prefHeight="530.0" prefWidth="620.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

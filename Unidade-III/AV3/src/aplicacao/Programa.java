@@ -2,10 +2,11 @@ package aplicacao;
 
 import java.util.ArrayList;
 
-import entidades.Pacote;
+import aplicacao.fxml.UImenuPrincipal;
+import entidades.pacote.Pacote;
 import javafx.application.Application;
 import javafx.stage.*;
-import servicos.ServicosBancoDeDados;
+import servicos.gerais.ServicosBancoDeDados;
 
 public class Programa extends Application{
     public static void main(String[] args) throws Exception	{
@@ -19,7 +20,7 @@ public class Programa extends Application{
         sbd.createList(lista);
         sbd.atualizaStatus(lista);
         sbd.updateBanco(lista);
-        FXMLMenuPrincipal menuPrincipal = new FXMLMenuPrincipal();
+        UImenuPrincipal menuPrincipal = new UImenuPrincipal();
         menuPrincipal.start(stage);
     }
 }

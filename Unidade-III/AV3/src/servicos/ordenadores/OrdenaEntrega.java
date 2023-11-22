@@ -2,7 +2,7 @@ package servicos.ordenadores;
 
 import java.util.Comparator;
 
-import entidades.Pacote;
+import entidades.pacote.Pacote;
 
 public class OrdenaEntrega implements Comparator<Pacote>{
     public int compare(Pacote p1, Pacote p2){
