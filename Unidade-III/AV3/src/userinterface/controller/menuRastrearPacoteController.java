@@ -1,13 +1,12 @@
 package userinterface.controller;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-
+// imports de arquivos locais
 import entidades.pacote.Pacote;
+import servicos.ordenadores.OrdenaA_ZDestinatario;
+import servicos.ordenadores.OrdenaA_ZRemetente;
+import servicos.ordenadores.OrdenaEntrega;
+
+// imports do javafx
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,9 +18,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import servicos.ordenadores.OrdenaA_ZDestinatario;
-import servicos.ordenadores.OrdenaA_ZRemetente;
-import servicos.ordenadores.OrdenaEntrega;
+
+// outros imports
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class menuRastrearPacoteController implements Initializable{
     private ArrayList<Pacote> listaBDD = new ArrayList<>();
@@ -34,6 +38,7 @@ public class menuRastrearPacoteController implements Initializable{
     @FXML
     private Button buscarBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     @FXML
     private void buscarBotaoAcao(ActionEvent e){
         String busca = buscarField.getText();
@@ -55,6 +60,7 @@ public class menuRastrearPacoteController implements Initializable{
     @FXML
     private ComboBox<String> filtrarComboBox;
 
+    // esse método insere as opções na combobox
     private void loadComboBox(){
         List<String> opcoes = new ArrayList<>();
         opcoes.add("A - Z Remetente");
@@ -64,6 +70,7 @@ public class menuRastrearPacoteController implements Initializable{
         filtrarComboBox.setItems(FXCollections.observableArrayList(opcoes));
     }
 
+    // esse método ordena a lista a partir da opcão escolhida na combobox
     private void ordenaComboBox(List<Pacote> listaBBDFiltrada){
         if(filtrarComboBox.getSelectionModel().getSelectedItem()=="A - Z Remetente"){
             Collections.sort(listaBBDFiltrada, new OrdenaA_ZRemetente());
@@ -76,6 +83,7 @@ public class menuRastrearPacoteController implements Initializable{
         }
     }
 
+    // esse método filtra a lista e ordena a partir da escolha da combobox
     private void ordenaComboBox(){
         filtrarComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             
@@ -97,6 +105,7 @@ public class menuRastrearPacoteController implements Initializable{
     @FXML
     private ScrollPane scrollPainel;
 
+    // esse método adiciona os paineis na janela
     @FXML
     private void addPaineis() throws Exception{
         VBox conteudo = new VBox();
@@ -116,6 +125,7 @@ public class menuRastrearPacoteController implements Initializable{
         ordenaComboBox();
     }
 
+    // esse método atualiza a janela toda vez que a combobox é alterada ou algo é pesquisado
     public void updateUI(List<Pacote> lista){
         try {
             ((VBox) scrollPainel.getContent()).getChildren().clear();

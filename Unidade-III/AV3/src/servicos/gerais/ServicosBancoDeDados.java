@@ -1,11 +1,14 @@
 package servicos.gerais;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+// imports de arquivos locais
+import entidades.pacote.DimensaoCaixa;
+import entidades.pacote.DimensaoCilindro;
+import entidades.pacote.Pacote;
+import servicos.frete_entrega.StatusEntrega;
+import servicos.frete_entrega.TipoEntrega;
+
+// outros imports
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -16,15 +19,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-import entidades.pacote.DimensaoCaixa;
-import entidades.pacote.DimensaoCilindro;
-import entidades.pacote.Pacote;
-import servicos.frete_entrega.StatusEntrega;
-import servicos.frete_entrega.TipoEntrega;
-
+/* Essa classe é apenas uma classe de métodos,
+   suas funções apenas auxiliam no funcionamento
+   do código, atuando indiretamente no que é exibido */
 public class ServicosBancoDeDados {
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+    /* Essa função foi utilizada no menu de adicionar pacotes,
+       uma vez que ela adiciona um novo pacote ao banco de dados */
     public void addPacote(String descricao, Integer altura, Integer largura, Integer comprimento, Integer peso, 
                 String nomeRemetente, String cepRemetente, String nomeDestinatario, String cepDestinatario,
                 String cpfDestinatario, String endereco, String codigo, Double frete, Double dias, TipoEntrega tipoEntrega,
@@ -37,6 +39,11 @@ public class ServicosBancoDeDados {
         }
     }
 
+    /* Essa função foi utilizada no menu de adicionar pacotes,
+       sua utilidade é criar códigos com números aleatórios,
+       de forma que seja extremamente difícil conseguir 2 códigos
+       de rastreio iguais devido ao número de caracteres randômicos
+       presentes na String */
     public String geraRastreio(){
         Random rand = new Random();
         int n1, n2, n3, n4, n5, n6, n7, n8;
@@ -53,11 +60,14 @@ public class ServicosBancoDeDados {
         return ("BR"+n1+n2+n3+n4+n5+n6+n7+n8+"POO");
     }
 
+    /* Essa função foi usada diversas vezes no código,
+       tanto para mostrar informações vitais na tela,
+       quanto para atualizar o banco de dados, ou até
+       mesmo criar listas filtradas */
     public void createList(ArrayList<Pacote> listaBDD) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         listaBDD.clear();
 
-        // ler as linhas do arquivo
         try(BufferedReader bReader = new BufferedReader(new FileReader("src/entidades/BancoDeDados.csv"))){
             String linha = bReader.readLine();
 
@@ -72,13 +82,19 @@ public class ServicosBancoDeDados {
         }
     }
 
+    /* Essa função foi utilizada para atualizar o banco 
+       de dados quando um item foi editado ou excluido.
+       A função cria um arquivo temporario, deleta o antigo
+       BancoDeDados.csv e renomeio o temporario para BancoDeDados.csv,
+       utilizando a lista que foi passada como parâmetro para 
+       reconstruir o banco de dados */
     public void updateBanco (ArrayList<Pacote> listaBBD){
         File auxiliar = new File("src/entidades", "temporario.csv");
         try {
             auxiliar.createNewFile();
             Files.delete(Paths.get("src/entidades/BancoDeDados.csv"));
             Files.move(Paths.get("src/entidades/temporario.csv"), Paths.get("src/entidades/BancoDeDados.csv"));
-            // escrever os dados no arquivo
+            
             for (Pacote pacote : listaBBD){
                 if(pacote.getDimensao() instanceof DimensaoCaixa) addPacote(pacote.getDescricao(), pacote.getDimensao().getAltura(), ((DimensaoCaixa)pacote.getDimensao()).getLargura(), ((DimensaoCaixa)pacote.getDimensao()).getComprimento(), pacote.getPeso(), pacote.getNome_remetente(), pacote.getCep_remetente(), pacote.getNome_destinatario(), pacote.getCep_destinatario(), pacote.getCpf_destinatario(), pacote.getEndereco(), pacote.getCodigo(), pacote.getFrete(), pacote.getDias(), pacote.getTipo_entrega(), pacote.getStatus_entrega(), pacote.getData_envio(), pacote.getData_entrega());
                 else addPacote(pacote.getDescricao(), pacote.getDimensao().getAltura(), ((DimensaoCilindro)pacote.getDimensao()).getDiametro(), 0, pacote.getPeso(), pacote.getNome_remetente(), pacote.getCep_remetente(), pacote.getNome_destinatario(), pacote.getCep_destinatario(), pacote.getCpf_destinatario(), pacote.getEndereco(), pacote.getCodigo(), pacote.getFrete(), pacote.getDias(), pacote.getTipo_entrega(), pacote.getStatus_entrega(), pacote.getData_envio(), pacote.getData_entrega());
@@ -88,6 +104,11 @@ public class ServicosBancoDeDados {
         }
     }
 
+    /* Essa função foi utilizada na Main, uma vez que
+       ela só precisa ser executada no inicio do programa,
+       atualizando os status dos pacotes a partir da
+       data atual e, na main, utilizando o método updateBanco
+       para escrever os dados novos no banco de dados */
     public void atualizaStatus (ArrayList<Pacote> lista) throws FileNotFoundException, ParseException {
         for(Pacote pacote : lista){
             if(pacote.getStatus_entrega() != StatusEntrega.OBJETO_ENTREGUE) {

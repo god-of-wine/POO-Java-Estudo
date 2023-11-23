@@ -18,7 +18,8 @@ public class menuPrincipalController {
     @FXML
     private Button addPacoteBotao;
     
-    @FXML // Adicionando a ação ao clicar no botão
+    // esse método é chamado quando o botão é pressionado no fxml (abrindo a janela de adicionar pacote)
+    @FXML
     private void addPacoteBotaoAcao(ActionEvent event) throws Exception{
         UIadicionarPacote fxmlAddPacote = new UIadicionarPacote();
 
@@ -28,7 +29,8 @@ public class menuPrincipalController {
     @FXML
     private Button editPacoteBotao;
 
-    @FXML // Adicionando a ação ao clicar no botão
+    // esse método é chamado quando o botão é pressionado no fxml (abrindo a janela de editar pacote)
+    @FXML
     private void editPacoteBotaoAcao(ActionEvent event) throws Exception{
         UImenuEditarPacote fxmlEditPacote = new UImenuEditarPacote();
         ArrayList<Pacote> lista = new ArrayList<>();
@@ -40,7 +42,8 @@ public class menuPrincipalController {
     @FXML
     private Button equipeBotao;
 
-    @FXML // Adicionando a ação ao clicar no botão
+    // esse método é chamado quando o botão é pressionado no fxml (abrindo a janela que mostra a equipe)
+    @FXML
     private void equipeBotaoAcao(ActionEvent event) throws Exception{
         UIconhecaEquipe fxmlEquipe = new UIconhecaEquipe();
 
@@ -50,7 +53,8 @@ public class menuPrincipalController {
     @FXML
     private Button rastrearPacoteBotao;
 
-    @FXML // Adicionando a ação ao clicar no botão
+    // esse método é chamado quando o botão é pressionado no fxml (abrindo a janela de rastrear pacotes)
+    @FXML
     private void rastrearPacoteBotaoAcao(ActionEvent event) throws Exception{
         UImenuRastrearPacote fxmlRastrearPacote = new UImenuRastrearPacote();
         ArrayList<Pacote> lista = new ArrayList<>();

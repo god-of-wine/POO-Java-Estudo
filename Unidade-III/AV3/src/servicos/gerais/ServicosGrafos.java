@@ -1,12 +1,20 @@
 package servicos.gerais;
 
+// import de arquivos locais
 import grafo.*;
 
+// outros imports
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
+/* Essa classe é apenas uma classe de métodos,
+   suas funções apenas auxiliam no funcionamento
+   do código, atuando indiretamente no que é exibido */
 public class ServicosGrafos {
-    // Função que inicia o grafo do Brasil, adicionando as distancias às arestas
+    
+    /* Essa função define o grafo para coordenadas pré-selecionadas
+       pelo grupo. O grafo criado a partir dessa função é um grafo
+       do mapa do Brasil */
     public void IniciaGrafoBrasil(Grafo grafo){
         int[][] arestas = { {0, 8, 416},{1, 2, 501}, {1, 8, 408}, {2, 0, 444}, {3, 1, 664}, {3, 2, 441}, {4, 2, 1632}, {4, 3, 1349}, 
             {5, 4, 806}, {6, 4, 1183}, {6, 5, 779}, {7, 1, 1083}, {7, 3, 740}, {7, 4, 1444}, {7, 6, 2021}, {8, 0, 416}, {9, 8, 701} };
@@ -16,7 +24,9 @@ public class ServicosGrafos {
         }
     }
 
-    // Função que percorre o grafo e acha a menor distância entre 2 pontos(vértices) -> (algorítmo de Dijkstra)
+    /* Essa função percorre o grafo com o uso do
+       algorítmo de Dijkstra e encontra o menor
+       caminho entre 2 pontos (vértices) selecionados */
     public int Dijkstra(Grafo grafo, int origem, int destino){
         int[] dist = new int[grafo.getSedes()];
         int[] pai = new int[grafo.getSedes()];

@@ -12,6 +12,7 @@ import javafx.stage.*;
 // outros imports
 import java.util.ArrayList;
 
+
 public class Programa extends Application{
     public static void main(String[] args) throws Exception	{
         launch(args);

@@ -1,8 +1,9 @@
 package userinterface.controller;
 
-import java.util.ArrayList;
-
+// imports de arquivos locais
 import entidades.pacote.Pacote;
+
+// imports do javafx
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -11,6 +12,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+// outros imports
+import java.util.ArrayList;
 
 public class menuEditarPacoteController {
     private ArrayList<Pacote> listaBDD = new ArrayList<>();
@@ -28,6 +32,9 @@ public class menuEditarPacoteController {
     @FXML
     private ScrollPane scrollPanel;
 
+    /* Esse método adiciona os paineis na janela,
+       sendo que cada painel é um novo fxml com
+       informações distintas */
     @FXML
     private void addPaineis() throws Exception{
         gridPanel.getChildren().clear();

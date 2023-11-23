@@ -1,13 +1,13 @@
 package userinterface.controller;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
+// imports de arquivos locais
 import aplicacao.fxml.UImenuEditarPacote;
 import entidades.pacote.DimensaoCaixa;
 import entidades.pacote.DimensaoCilindro;
 import entidades.pacote.Pacote;
+import servicos.gerais.ServicosBancoDeDados;
+
+// imports do javafx
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +16,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import servicos.gerais.ServicosBancoDeDados;
+
+// outros imports
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 
 public class abaEditarPacoteController implements Initializable{
     private Pacote pacote;
@@ -30,6 +35,7 @@ public class abaEditarPacoteController implements Initializable{
         loadEdit();
     }
 
+    // essa função carrega as informações do pacote no fxml 
     public void loadEdit(){
         alturaField.setText(Integer.toString(pacote.getDimensao().getAltura()));
         descricaoField.setText(pacote.getDescricao());
@@ -66,6 +72,7 @@ public class abaEditarPacoteController implements Initializable{
     @FXML
     private Button concluirBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     ServicosBancoDeDados sbd = new ServicosBancoDeDados();
     @FXML
     private void concluirBotaoAcao(ActionEvent event) throws Exception{

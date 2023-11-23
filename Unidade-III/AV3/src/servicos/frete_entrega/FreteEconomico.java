@@ -1,5 +1,6 @@
 package servicos.frete_entrega;
 
+// o frete econômico possui um frete mais barato, porem um tempo de entrega maior
 public class FreteEconomico implements FretePrazo{
     public Double CalculaFrete(int altura, int largura, int comprimento, int peso, int distancia){
         if(distancia==0) return 10.0;

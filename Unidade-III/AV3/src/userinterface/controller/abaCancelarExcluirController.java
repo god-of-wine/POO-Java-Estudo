@@ -1,16 +1,20 @@
 package userinterface.controller;
 
-import java.util.ArrayList;
-
+// imports de arquivos locais
 import aplicacao.fxml.UImenuEditarPacote;
 import entidades.pacote.Pacote;
+import servicos.gerais.ServicosBancoDeDados;
+
+// imports do javafx
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import servicos.gerais.ServicosBancoDeDados;
+
+// outros imports
+import java.util.ArrayList;
 
 public class abaCancelarExcluirController {
     private Pacote pacote;
@@ -27,6 +31,7 @@ public class abaCancelarExcluirController {
     @FXML
     private Button cancelarBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     @FXML
     private void cancelarBotaoAcao(ActionEvent e) throws Exception{
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -36,6 +41,7 @@ public class abaCancelarExcluirController {
     @FXML
     private Button excluirBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     @FXML
     private void excluirBotaoAcao(ActionEvent e) throws Exception{
         listaBDD.remove(pacote);

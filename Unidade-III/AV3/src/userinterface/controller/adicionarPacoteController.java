@@ -1,15 +1,17 @@
 package userinterface.controller;
 
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
+// imports de arquivos locais
 import aplicacao.fxml.UIabaCodigoRastreio;
 import grafo.Grafo;
-import javafx.collections.FXCollections;
+import servicos.frete_entrega.FreteEconomico;
+import servicos.frete_entrega.FreteExpresso;
+import servicos.frete_entrega.StatusEntrega;
+import servicos.frete_entrega.TipoEntrega;
+import servicos.gerais.ServicosBancoDeDados;
+import servicos.gerais.ServicosGrafos;
 
+// imports do javafx
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,12 +22,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import servicos.frete_entrega.FreteEconomico;
-import servicos.frete_entrega.FreteExpresso;
-import servicos.frete_entrega.StatusEntrega;
-import servicos.frete_entrega.TipoEntrega;
-import servicos.gerais.ServicosBancoDeDados;
-import servicos.gerais.ServicosGrafos;
+
+// outos imports
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class adicionarPacoteController implements Initializable{
     // esses itens serão usados por mais de uma função, portanto serão criados aqui
@@ -46,16 +49,16 @@ public class adicionarPacoteController implements Initializable{
     @FXML
     private Button concluirBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     ServicosBancoDeDados sbd = new ServicosBancoDeDados();
     @FXML
     private void concluirBotaoAcao(ActionEvent event) throws Exception{
         String codRastreio  = sbd.geraRastreio();
         sbd.addPacote(descricaoField.getText(), Integer.parseInt(alturaField.getText()), Integer.parseInt(larguraField.getText()), Integer.parseInt(comprimentoField.getText()), Integer.parseInt(pesoField.getText()), nomeRemetenteField.getText(), cepRemetenteField.getText(), nomeDestinatarioField.getText(), cepDestinatarioField.getText(), cpfDestinatarioField.getText(), enderecoArea.getText(), codRastreio, frete, dias, freteComboBox.getSelectionModel().getSelectedItem(), StatusEntrega.PAGAMENTO_PENDENTE, java.sql.Date.valueOf(LocalDate.now()), java.sql.Date.valueOf(LocalDate.now().plusDays(dias.intValue())));
-        // abre a tela com o código de rastreio do pacote adicionado
+        
         UIabaCodigoRastreio fxmlRastreio = new UIabaCodigoRastreio();
         fxmlRastreio.start(new Stage(), codRastreio);
 
-        // fecha a aba quando aperto o botão de concluir
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -72,11 +75,14 @@ public class adicionarPacoteController implements Initializable{
     @FXML
     private ComboBox<TipoEntrega> freteComboBox;
     
+    /* Esse método atualiza o campo que informa
+       o frete e o prazo, sempre que a opção no
+       combobox for alterada */
     private FreteEconomico freteco = new FreteEconomico();
     private FreteExpresso fretex = new FreteExpresso();
     private Grafo grafo = new Grafo(10);
     private ServicosGrafos sergra = new ServicosGrafos();
-    @FXML // criando a função de atualizar o frete e o prazo apos selecionar a opçao na caixa
+    @FXML 
     private void atualizarFreteEPrazo(){
         sergra.IniciaGrafoBrasil(grafo);
         if(freteComboBox.getSelectionModel().getSelectedItem()==TipoEntrega.ECONOMICA){
@@ -108,8 +114,7 @@ public class adicionarPacoteController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        loadComboBox(); //inicia o combobox
-        // faz com que sempre que a combobox seja alterada, atualize os dados de frete e prazo
+        loadComboBox();
         freteComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             atualizarFreteEPrazo();
         });
@@ -117,7 +122,7 @@ public class adicionarPacoteController implements Initializable{
 
     private List<TipoEntrega> categorias = new ArrayList<>();
 
-    // carregando os itens da ComboBox
+    // esse método insere os itens na ComboBox
     public void loadComboBox(){
         categorias.add(TipoEntrega.ECONOMICA);
         categorias.add(TipoEntrega.EXPRESSA);

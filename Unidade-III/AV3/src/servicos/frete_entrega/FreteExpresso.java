@@ -1,5 +1,6 @@
 package servicos.frete_entrega;
 
+// o frete expresso possui um frete mais caro, porém um tempo de entrega menor
 public class FreteExpresso implements FretePrazo{
     public Double CalculaFrete(int altura, int largura, int comprimento, int peso, int distancia){
         if(distancia==0) return 10.0;

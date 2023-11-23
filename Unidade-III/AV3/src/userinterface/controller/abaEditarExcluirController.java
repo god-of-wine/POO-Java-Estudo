@@ -1,15 +1,19 @@
 package userinterface.controller;
 
-import java.util.ArrayList;
-
+// imports de arquivos locais
 import aplicacao.fxml.UIabaCancelarExcluir;
 import aplicacao.fxml.UIabaEditarPacote;
 import entidades.pacote.Pacote;
+
+// imports do javafx
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+
+// outros imports
+import java.util.ArrayList;
 
 public class abaEditarExcluirController {
     private Pacote pacote;
@@ -31,6 +35,7 @@ public class abaEditarExcluirController {
     @FXML
     private Button deletarBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     @FXML
     private void deletarBotaoAcao(ActionEvent e) throws Exception{
         UIabaCancelarExcluir fxmlCE = new UIabaCancelarExcluir();
@@ -40,6 +45,7 @@ public class abaEditarExcluirController {
     @FXML
     private Button editarBotao;
 
+    // esse método é chamado quando o botão é pressionado no fxml
     @FXML
     private void editarBotaoAcao(ActionEvent e) throws Exception{
         UIabaEditarPacote fxmlMEP = new UIabaEditarPacote();
